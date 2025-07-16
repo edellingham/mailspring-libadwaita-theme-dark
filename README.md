@@ -6,7 +6,6 @@ A theme originally by [drakkar1969](https://github.com/drakkar1969/mailspring-li
 
 ### Dark variant
 <div align="left"><img src="screenshots/main-dark.jpg" alt="main-dark" /></div>
-<div align="left"><img src="screenshots/prefs-dark.png" alt="prefs-dark" /></div>
 
 ## Installation
 
