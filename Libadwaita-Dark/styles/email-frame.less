@@ -5,3 +5,364 @@
 		color: @text_color !important;
 	}
 }
+
+//------------------------------------------------------------
+// Email body light mode styling
+//------------------------------------------------------------
+
+// Main email content area - light background for readability
+.ignore-in-parent-frame {
+	html {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+	}
+	
+	body {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+	}
+	
+	// Email content containers
+	div[data-html-editor] {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+	}
+	
+	// Email body text
+	p, div, span, h1, h2, h3, h4, h5, h6 {
+		color: #000000 !important;
+	}
+	
+	// Links in emails
+	a {
+		color: #0066cc !important;
+		
+		&:hover {
+			color: #003366 !important;
+		}
+	}
+	
+	// Blockquotes in emails
+	blockquote {
+		background-color: #f8f8f8 !important;
+		border-left: 4px solid #e0e0e0 !important;
+		color: #333333 !important;
+	}
+	
+	// Code blocks in emails
+	pre, code {
+		background-color: #f5f5f5 !important;
+		color: #333333 !important;
+		border: 1px solid #e0e0e0 !important;
+	}
+	
+	// Tables in emails
+	table {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+		
+		td, th {
+			background-color: #ffffff !important;
+			color: #000000 !important;
+			border-color: #e0e0e0 !important;
+		}
+	}
+	
+	// Lists in emails
+	ul, ol {
+		color: #000000 !important;
+	}
+	
+	// Horizontal rules
+	hr {
+		background-color: #e0e0e0 !important;
+		border-color: #e0e0e0 !important;
+	}
+	
+	// Embedded content and iframes
+	iframe {
+		background-color: #ffffff !important;
+	}
+	
+	// Images (ensure they're visible)
+	img {
+		background-color: transparent !important;
+	}
+	
+	// Form elements in emails
+	input, textarea, select {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+		border: 1px solid #e0e0e0 !important;
+	}
+	
+	// Strong and emphasis text
+	strong, b {
+		color: #000000 !important;
+	}
+	
+	em, i {
+		color: #000000 !important;
+	}
+	
+	// Strikethrough text
+	s, strike {
+		color: #666666 !important;
+	}
+	
+	// Small text
+	small {
+		color: #666666 !important;
+	}
+	
+	// Marked text
+	mark {
+		background-color: #ffff00 !important;
+		color: #000000 !important;
+	}
+	
+	// Subscript and superscript
+	sub, sup {
+		color: #000000 !important;
+	}
+}
+
+//------------------------------------------------------------
+// Message item wrap styling - entire message area
+//------------------------------------------------------------
+
+// Target everything inside message-item-wrap for light mode
+#message-list .message-item-wrap {
+	// Message header area
+	.message-header {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+		
+		// Header text elements
+		.header-row {
+			.header-label {
+				color: #000000 !important;
+			}
+			
+			.header-name {
+				color: #000000 !important;
+			}
+		}
+		
+		// Message participants
+		.message-participants {
+			.from-contact {
+				color: #000000 !important;
+			}
+			
+			.from-label,
+			.to-label,
+			.reply-to-label,
+			.cc-label,
+			.bcc-label {
+				color: #000000 !important;
+			}
+			
+			.to-contact,
+			.reply-to-contact,
+			.cc-contact,
+			.bcc-contact,
+			.to-everyone {
+				color: #000000 !important;
+			}
+			
+			.expanded-participants {
+				.participant-primary,
+				.participant-secondary {
+					color: #000000 !important;
+				}
+			}
+		}
+		
+		// Message time and indicators
+		.message-time,
+		.message-indicator {
+			color: #666666 !important;
+		}
+		
+		// Header toggle control
+		.header-toggle-control img {
+			background: #000000 !important;
+		}
+		
+		// Message actions
+		.message-actions-wrap {
+			.button-dropdown.bordered {
+				.primary-item,
+				.secondary-picker {
+					background: #f0f0f0 !important;
+					color: #000000 !important;
+					
+					img.content-mask {
+						background-color: #000000 !important;
+					}
+				}
+				
+				.primary-item:hover,
+				.secondary-picker:hover {
+					background: #e0e0e0 !important;
+				}
+			}
+		}
+	}
+	
+	// Message body content
+	.message-item-white-wrap {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+		
+		// Message content area
+		.message-content-area {
+			background-color: #ffffff !important;
+			color: #000000 !important;
+		}
+		
+		// Email body content
+		.message-body {
+			background-color: #ffffff !important;
+			color: #000000 !important;
+			
+			// Ensure all text elements are dark
+			p, div, span, h1, h2, h3, h4, h5, h6 {
+				color: #000000 !important;
+			}
+			
+			// Links
+			a {
+				color: #0066cc !important;
+				
+				&:hover {
+					color: #003366 !important;
+				}
+			}
+			
+			// Blockquotes
+			blockquote {
+				background-color: #f8f8f8 !important;
+				border-left: 4px solid #e0e0e0 !important;
+				color: #333333 !important;
+			}
+			
+			// Code blocks
+			pre, code {
+				background-color: #f5f5f5 !important;
+				color: #333333 !important;
+				border: 1px solid #e0e0e0 !important;
+			}
+			
+			// Tables
+			table {
+				background-color: #ffffff !important;
+				color: #000000 !important;
+				
+				td, th {
+					background-color: #ffffff !important;
+					color: #000000 !important;
+					border-color: #e0e0e0 !important;
+				}
+			}
+			
+			// Lists
+			ul, ol {
+				color: #000000 !important;
+			}
+			
+			// Horizontal rules
+			hr {
+				background-color: #e0e0e0 !important;
+				border-color: #e0e0e0 !important;
+			}
+			
+			// Embedded content
+			iframe {
+				background-color: #ffffff !important;
+			}
+			
+			// Images
+			img {
+				background-color: transparent !important;
+			}
+			
+			// Form elements
+			input, textarea, select {
+				background-color: #ffffff !important;
+				color: #000000 !important;
+				border: 1px solid #e0e0e0 !important;
+			}
+			
+			// Text formatting
+			strong, b {
+				color: #000000 !important;
+			}
+			
+			em, i {
+				color: #000000 !important;
+			}
+			
+			s, strike {
+				color: #666666 !important;
+			}
+			
+			small {
+				color: #666666 !important;
+			}
+			
+			mark {
+				background-color: #ffff00 !important;
+				color: #000000 !important;
+			}
+			
+			sub, sup {
+				color: #000000 !important;
+			}
+		}
+	}
+	
+	// Footer reply area
+	.footer-reply-area-wrap {
+		background-color: #ffffff !important;
+		color: #000000 !important;
+		
+		.footer-reply-area {
+			background: #f0f0f0 !important;
+			color: #000000 !important;
+			
+			img.content-mask {
+				background-color: #000000 !important;
+			}
+			
+			&:hover {
+				background-color: #e0e0e0 !important;
+			}
+		}
+	}
+}
+
+//------------------------------------------------------------
+// Additional email content styling
+//------------------------------------------------------------
+
+// Ensure any other email content areas are also light
+.message-content,
+.email-content,
+.mail-content {
+	background-color: #ffffff !important;
+	color: #000000 !important;
+	
+	p, div, span, h1, h2, h3, h4, h5, h6 {
+		color: #000000 !important;
+	}
+	
+	a {
+		color: #0066cc !important;
+		
+		&:hover {
+			color: #003366 !important;
+		}
+	}
+}
