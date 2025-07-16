@@ -11,8 +11,8 @@
 //------------------------------------------------------------
 
 // Override the card background for expanded message containers to be white
-// Exclude collapsed messages to keep their original card styling
-#message-list .message-item-wrap:not(.collapsed) .message-item-white-wrap {
+// Exclude collapsed messages and composers to keep their original card styling
+#message-list .message-item-wrap:not(.collapsed) .message-item-white-wrap:not(.composer-outer-wrap) {
 	background: #ffffff !important;
 }
 
