@@ -1,33 +1,59 @@
 @import "main.less";
 
 //------------------------------------------------------------
+// Light mode colors for composer (matching Libadwaita light theme exactly)
+//------------------------------------------------------------
+@composer_bg_color: #ffffff;
+@composer_card_bg_color: #ffffff;
+@composer_window_bg_color: #fafafb;
+@composer_text_color: rgba(0, 0, 6, 0.8);
+@composer_text_color_dim: fade(@composer_text_color, 55%);
+@composer_border_color: rgba(0, 0, 0, 0.07);
+
+// Button colors (exact calculations from light theme)
+@composer_button_color: fade(@composer_text_color, alpha(@composer_text_color)*100*0.1);
+@composer_button_hover_color: fade(@composer_text_color, alpha(@composer_text_color)*100*0.15);
+@composer_button_active_color: fade(@composer_text_color, alpha(@composer_text_color)*100*0.3);
+@composer_button_checked_color: fade(@composer_text_color, alpha(@composer_text_color)*100*0.3);
+@composer_button_checked_hover_color: fade(@composer_text_color, alpha(@composer_text_color)*100*0.35);
+
+@composer_input_bg_color: #ffffff;
+@composer_input_border_color: rgba(0, 0, 0, 0.15);
+@composer_focus_border_color: @accent_color;
+
+// Default button gradient colors (for send button)
+@composer_button_default_hover_color: linear-gradient(fade(@composer_text_color, alpha(@composer_text_color)*100*0.1), fade(@composer_text_color, alpha(@composer_text_color)*100*0.1));
+@composer_button_default_active_color: linear-gradient(fade(black, 20%), fade(black, 20%));
+
+//------------------------------------------------------------
 // Draft message (edit mode) body
 //------------------------------------------------------------
 #message-list .message-item-wrap .message-item-white-wrap.composer-outer-wrap {
-	background: @card_bg_color;
-	border: 0;
-	box-shadow: @card_shadow !important;
+	background: @composer_card_bg_color;
+	border: 1px solid @composer_border_color;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 
 	.composer-content-wrap {
+		background: @composer_bg_color;
 		border: 0;
 		border-radius: @card_radius @card_radius 0 0;
 		box-shadow: none;
 	}
 
 	.composer-action-bar-wrap {
-		background-color: @window_bg_color;
+		background-color: @composer_window_bg_color;
 		box-shadow: none;
 		border: 0;
-		border-top: 1px solid @borders_color;
+		border-top: 1px solid @composer_border_color;
 		border-radius: 0 0 @card_radius @card_radius;
 	}
 
 	&.focused {
-		background: @card_bg_color;
-		outline: 2px solid @focus_border_color;
+		background: @composer_card_bg_color;
+		outline: 2px solid @composer_focus_border_color;
 
 		.composer-action-bar-wrap {
-			background-color: @window_bg_color;
+			background-color: @composer_window_bg_color;
 		}
 	}
 }
@@ -36,15 +62,21 @@
 // New message
 //---------------------------------
 .composer-full-window {
+	background: @composer_bg_color;
+
 	.composer-outer-wrap {
-		background: @card_bg_color;
-		border-top: 1px solid @borders_color;
+		background: @composer_card_bg_color;
+		border-top: 1px solid @composer_border_color;
 	}
 
-	.composer-inner-wrap .composer-action-bar-wrap {
-		background-color: @window_bg_color;
-		box-shadow: none;
-		border-top: 1px solid @borders_color;
+	.composer-inner-wrap {
+		background: @composer_bg_color;
+
+		.composer-action-bar-wrap {
+			background-color: @composer_window_bg_color;
+			box-shadow: none;
+			border-top: 1px solid @composer_border_color;
+		}
 	}
 }
 
@@ -58,10 +90,10 @@
 
 	.btn.btn-toolbar {
 		box-shadow: none;
-		background: @button_color !important;
+		background: @composer_button_color !important;
 		border: 0;
 		border-radius: @button_radius;
-		color: @text_color;
+		color: @composer_text_color;
 		font-weight: bold;
 		height: @button_height;
 		line-height: @button_height;
@@ -70,16 +102,16 @@
 		margin: 0 4px !important;
 
 		img.content-mask {
-			background-color: @text_color !important;
+			background-color: @composer_text_color !important;
 		}
 
 		&:hover {
-			background-color: @button_hover_color !important;
+			background-color: @composer_button_hover_color !important;
 		}
 
 		&:active,
 		&.btn-enabled {
-			background-color: @button_active_color !important;
+			background-color: @composer_button_active_color !important;
 		}
 	}
 
@@ -119,12 +151,12 @@
 
 		.primary-item:hover,
 		.secondary-picker:hover {
-			background-image: @button_default_hover_color;
+			background-image: @composer_button_default_hover_color;
 		}
 
 		.primary-item:active,
 		.secondary-picker:active {
-			background-image: @button_default_active_color;
+			background-image: @composer_button_default_active_color;
 		}
 	}
 }
@@ -141,35 +173,40 @@
 //------------------------------------------------------------
 // Draft message (edit mode) header labels
 //------------------------------------------------------------
-.tokenizing-field .tokenizing-field-label {
-	color: @text_color;
+.message-item-white-wrap.composer-outer-wrap .tokenizing-field .tokenizing-field-label,
+.composer-full-window .tokenizing-field .tokenizing-field-label {
+	color: @composer_text_color;
 	font-size: @text_size;
 	font-weight: 600;
 	margin-top: 1px;
 }
 
-.composer-inner-wrap .composer-field-label {
-	color: @text_color;
+.message-item-white-wrap.composer-outer-wrap .composer-inner-wrap .composer-field-label,
+.composer-full-window .composer-inner-wrap .composer-field-label {
+	color: @composer_text_color;
 	font-size: @text_size;
 	font-weight: 600;
 }
 
-.composer-participant-field {
-	color: @text_color;
+.message-item-white-wrap.composer-outer-wrap .composer-participant-field,
+.composer-full-window .composer-participant-field {
+	color: @composer_text_color;
 	font-size: @text_size;
 }
 
 //------------------------------------------------------------
 // Draft message (edit mode) header horizontal lines
 //------------------------------------------------------------
-.composer-participant-field:after {
-	background: @borders_color;
+.message-item-white-wrap.composer-outer-wrap .composer-participant-field:after,
+.composer-full-window .composer-participant-field:after {
+	background: @composer_border_color;
 }
 
 //------------------------------------------------------------
 // Draft message (edit mode) recipient tokens
 //------------------------------------------------------------
-.tokenizing-field {
+.message-item-white-wrap.composer-outer-wrap .tokenizing-field,
+.composer-full-window .tokenizing-field {
 	.header-container {
 		background: transparent;
 		border: none;
@@ -177,10 +214,10 @@
 
 	.token {
 		box-shadow: none;
-		background: @button_color;
+		background: @composer_button_color;
 		border: 0;
 		border-radius: @button_radius;
-		color: @text_color;
+		color: @composer_text_color;
 		height: @button_height;
 		line-height: @button_height;
 		margin: -2px 5px 5px 1px;
@@ -190,74 +227,81 @@
 		}
 
 		.action img {
-			background-color: @text_color;
+			background-color: @composer_text_color;
 		}
 
 		&:hover {
 			box-shadow: none;
-			background: @button_hover_color;
+			background: @composer_button_hover_color;
 		}
 
 		&.selected,
 		&.dragging {
 			box-shadow: none;
-			background: @button_checked_color;
+			background: @composer_button_checked_color;
 			border: 0;
 			border-radius: @button_radius;
-			color: @text_color;
+			color: @composer_text_color;
 			margin: -2px 5px 5px 1px;
 
 			.action img {
-				background-color: @text_color;
+				background-color: @composer_text_color;
 			}
 
 			&:hover {
-				background: @button_checked_hover_color;
+				background: @composer_button_checked_hover_color;
 			}
 		}
 
 		body.is-blurred &:not(.invalid) {
-			background: @button_color;
-			color: @text_color;
+			background: @composer_button_color;
+			color: @composer_text_color;
 
 			&:hover {
-				background: @button_hover_color;
+				background: @composer_button_hover_color;
 			}
 		}
 
 		&.invalid {
-			background-color: @button_color;
+			background-color: @composer_button_color;
 			color: @error_color;
 			border-bottom: 2px solid @error_bg_color;
 			margin-bottom: 5px;
 
 			&:hover {
 				box-shadow: none;
-				background-color: @button_hover_color;
+				background-color: @composer_button_hover_color;
 			}
 
 			&.selected,
 			&.dragging {
 				box-shadow: none;
-				background: @button_checked_color;
+				background: @composer_button_checked_color;
 				border: 0;
 				border-bottom: 2px solid @error_bg_color;
 
 				&:hover {
-					background: @button_checked_hover_color;
+					background: @composer_button_checked_hover_color;
 				}
 			}
 		}
 	}
 
 	.tokenizing-field-input input {
+		background: @composer_input_bg_color;
+		color: @composer_text_color;
+		border: 1px solid @composer_input_border_color;
 		margin-top: -2px;
 		margin-bottom: 5px;
 		border-radius: 0;
 
 		&:focus {
-			border: none;
+			border: 1px solid @composer_focus_border_color;
 			outline: none;
+		}
+
+		&::placeholder {
+			color: @composer_text_color_dim;
 		}
 	}
 }
@@ -586,12 +630,132 @@
 
 	&:before {
 		content: 'x';
-		color: @text_color;
+		color: @composer_text_color;
 		font-size: @text_size;
 		font-weight: bold;
 	}
 
 	&:hover {
 		opacity: 1;
+	}
+}
+
+//------------------------------------------------------------
+// Composer text area (RichEditor) - Light mode
+//------------------------------------------------------------
+.message-item-white-wrap.composer-outer-wrap .RichEditor-root,
+.composer-full-window .RichEditor-root {
+	background: @composer_bg_color !important;
+	color: @composer_text_color !important;
+
+	.RichEditor-editor {
+		background: @composer_bg_color !important;
+		color: @composer_text_color !important;
+	}
+
+	// Quoted text styling
+	.quoted-text-control {
+		background: @composer_bg_color;
+		color: @composer_text_color_dim;
+		border-top: 1px solid @composer_border_color;
+	}
+
+	// Signature styling
+	.uneditable {
+		background: @composer_bg_color;
+		color: @composer_text_color_dim;
+		border: 1px solid @composer_border_color;
+	}
+}
+
+// Subject line and all composer inputs
+.message-item-white-wrap.composer-outer-wrap input[name="subject"],
+.composer-full-window input[name="subject"],
+.message-item-white-wrap.composer-outer-wrap input,
+.composer-full-window input,
+.message-item-white-wrap.composer-outer-wrap .tokenizing-field-input input,
+.composer-full-window .tokenizing-field-input input {
+	background: @composer_input_bg_color !important;
+	color: @composer_text_color !important;
+	border: 1px solid @composer_input_border_color !important;
+
+	&:focus {
+		border-color: @composer_focus_border_color !important;
+		outline: none !important;
+	}
+
+	&::placeholder {
+		color: @composer_text_color_dim !important;
+	}
+}
+
+// Ensure contenteditable elements also use dark text
+.message-item-white-wrap.composer-outer-wrap [contenteditable],
+.composer-full-window [contenteditable] {
+	color: @composer_text_color !important;
+}
+
+// Select/dropdown fields
+.message-item-white-wrap.composer-outer-wrap select,
+.composer-full-window select {
+	background: @composer_button_color !important;
+	border: 0 !important;
+	border-radius: @button_radius !important;
+	color: @composer_text_color !important;
+	font-size: @text_size !important;
+	font-weight: bold !important;
+	height: @button_height !important;
+	line-height: @button_height !important;
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+
+	&:hover {
+		background: @composer_button_hover_color !important;
+	}
+
+	&:active,
+	&:focus {
+		background: @composer_button_active_color !important;
+		outline: 2px solid @composer_focus_border_color !important;
+		outline-offset: -2px !important;
+	}
+
+	option {
+		background: @composer_bg_color !important;
+		color: @composer_text_color !important;
+	}
+}
+
+// Button with select (composer dropdowns)
+.message-item-white-wrap.composer-outer-wrap button.with-select,
+.composer-full-window button.with-select {
+	max-width: 120px;
+	color: @composer_text_color !important;
+	padding: 0 !important;
+	cursor: auto;
+
+	select {
+		background: @composer_button_color !important;
+		border: 0 !important;
+		height: @button_height !important;
+		line-height: @button_height !important;
+		font-size: @text_size !important;
+		font-weight: bold !important;
+		color: @composer_text_color !important;
+		margin: 8px 4px 0px;
+
+		&:hover,
+		&:focus {
+			background: @composer_button_hover_color !important;
+		}
+
+		&:active {
+			background: @composer_button_checked_color !important;
+		}
+
+		option {
+			background: @composer_bg_color !important;
+			color: @composer_text_color !important;
+		}
 	}
 }

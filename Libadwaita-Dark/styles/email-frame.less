@@ -5,3 +5,510 @@
 		color: @text_color !important;
 	}
 }
+
+//------------------------------------------------------------
+// Override message container background
+//------------------------------------------------------------
+
+// Override the card background for expanded message containers to be white
+// Exclude collapsed messages and composers to keep their original card styling
+#message-list .message-item-wrap:not(.collapsed) .message-item-white-wrap:not(.composer-outer-wrap) {
+	background: #ffffff !important;
+}
+
+//------------------------------------------------------------
+// Email body styling - Smart approach to preserve email styling
+//------------------------------------------------------------
+
+// Main email content area - light background for readability  
+// ONLY apply to email iframes and content, NOT to sidebar or other UI
+.ignore-in-parent-frame {
+	// Set a light background for the main container only
+	html {
+		background-color: #f8f8f8;
+	}
+	
+	body {
+		background-color: #f8f8f8;
+	}
+	
+	// Email content containers - don't force backgrounds
+	div[data-html-editor] {
+		// Let email styling handle the background
+	}
+	
+	// Message iframe container - don't force backgrounds
+	.message-iframe-container {
+		// Let email styling handle the background
+		
+		iframe {
+			// Let email styling handle the background
+		}
+	}
+	
+	// Default text color for email content - dark for readability
+	// Only apply to elements that are direct children of light/transparent backgrounds
+	// Avoid overriding text in elements with dark backgrounds
+	body > p:not([style*="color"]), 
+	body > div:not([style*="color"]):not([style*="background"]), 
+	body > h1:not([style*="color"]), 
+	body > h2:not([style*="color"]), 
+	body > h3:not([style*="color"]), 
+	body > h4:not([style*="color"]), 
+	body > h5:not([style*="color"]), 
+	body > h6:not([style*="color"]),
+	div[style*="background-color: #ffffff"] p:not([style*="color"]),
+	div[style*="background-color: #fff"] p:not([style*="color"]),
+	div[style*="background-color: rgb(255, 255, 255)"] p:not([style*="color"]),
+	div[style*="background: #ffffff"] p:not([style*="color"]),
+	div[style*="background: #fff"] p:not([style*="color"]),
+	div[style*="background: rgb(255, 255, 255)"] p:not([style*="color"]),
+	table[style*="background-color: #ffffff"] p:not([style*="color"]),
+	table[style*="background-color: #fff"] p:not([style*="color"]),
+	table[style*="background: #ffffff"] p:not([style*="color"]),
+	table[style*="background: #fff"] p:not([style*="color"]) {
+		color: #000000;
+	}
+	
+	// Links in emails - ensure they're visible
+	a:not([style*="color"]) {
+		color: #0066cc;
+		
+		&:hover {
+			color: #003366;
+		}
+	}
+	
+	// Blockquotes - only style if not already styled
+	blockquote:not([style*="background-color"]) {
+		background-color: #f8f8f8;
+		border-left: 4px solid #e0e0e0;
+		color: #333333;
+	}
+	
+	// Code blocks - only style if not already styled
+	pre:not([style*="background-color"]), 
+	code:not([style*="background-color"]) {
+		background-color: #f5f5f5;
+		color: #333333;
+		border: 1px solid #e0e0e0;
+	}
+	
+	// Tables - don't force backgrounds or text colors
+	table:not([style*="background-color"]):not([style*="background"]) {
+		// Only apply to tables without any background styling
+		// Let email styling handle both background and text color
+		
+		td:not([style*="background-color"]):not([style*="color"]), 
+		th:not([style*="background-color"]):not([style*="color"]) {
+			// Only apply to cells without background or color styling
+			border-color: #e0e0e0;
+		}
+	}
+	
+	// Lists - only set color if in light containers
+	body > ul:not([style*="color"]), 
+	body > ol:not([style*="color"]),
+	div[style*="background-color: #ffffff"] ul:not([style*="color"]),
+	div[style*="background-color: #fff"] ul:not([style*="color"]),
+	div[style*="background: #ffffff"] ul:not([style*="color"]),
+	div[style*="background: #fff"] ul:not([style*="color"]),
+	div[style*="background-color: #ffffff"] ol:not([style*="color"]),
+	div[style*="background-color: #fff"] ol:not([style*="color"]),
+	div[style*="background: #ffffff"] ol:not([style*="color"]),
+	div[style*="background: #fff"] ol:not([style*="color"]) {
+		color: #000000;
+	}
+	
+	// Horizontal rules - only style if not already styled
+	hr:not([style*="background-color"]) {
+		background-color: #e0e0e0;
+		border-color: #e0e0e0;
+	}
+	
+	// Embedded content and iframes - don't force backgrounds
+	iframe {
+		// Let email styling handle the background
+	}
+	
+	// Images - don't force backgrounds
+	img {
+		// Let email styling handle the background
+	}
+	
+	// Form elements - only style if not already styled
+	input:not([style*="background-color"]), 
+	textarea:not([style*="background-color"]), 
+	select:not([style*="background-color"]) {
+		background-color: #ffffff;
+		color: #000000;
+		border: 1px solid #e0e0e0;
+	}
+	
+	// Text formatting - only set color if in light containers
+	// Remove blanket color override to preserve email styling
+	body > strong:not([style*="color"]), 
+	body > b:not([style*="color"]), 
+	body > em:not([style*="color"]), 
+	body > i:not([style*="color"]),
+	div[style*="background-color: #ffffff"] strong:not([style*="color"]),
+	div[style*="background-color: #fff"] strong:not([style*="color"]),
+	div[style*="background: #ffffff"] strong:not([style*="color"]),
+	div[style*="background: #fff"] strong:not([style*="color"]),
+	div[style*="background-color: #ffffff"] b:not([style*="color"]),
+	div[style*="background-color: #fff"] b:not([style*="color"]),
+	div[style*="background: #ffffff"] b:not([style*="color"]),
+	div[style*="background: #fff"] b:not([style*="color"]),
+	div[style*="background-color: #ffffff"] em:not([style*="color"]),
+	div[style*="background-color: #fff"] em:not([style*="color"]),
+	div[style*="background: #ffffff"] em:not([style*="color"]),
+	div[style*="background: #fff"] em:not([style*="color"]),
+	div[style*="background-color: #ffffff"] i:not([style*="color"]),
+	div[style*="background-color: #fff"] i:not([style*="color"]),
+	div[style*="background: #ffffff"] i:not([style*="color"]),
+	div[style*="background: #fff"] i:not([style*="color"]) {
+		color: #000000;
+	}
+	
+	// Marked text - only style if not already styled
+	mark:not([style*="background-color"]) {
+		background-color: #ffff00;
+		color: #000000;
+	}
+}
+
+//------------------------------------------------------------
+// Sidebar - keep dark theme colors (DO NOT override)
+//------------------------------------------------------------
+// The sidebar should remain dark theme colored
+// Only email content and composer should be light
+
+//------------------------------------------------------------
+// Email attachments - keep dark theme styling
+//------------------------------------------------------------
+// Attachments should remain dark theme styled
+// The original dark theme attachment styling is fine
+
+//------------------------------------------------------------
+// Message item wrap styling - entire message area
+//------------------------------------------------------------
+
+// Target everything inside message-item-wrap for light mode
+#message-list .message-item-wrap {
+	// Message header area
+	.message-header {
+		background-color: #ffffff;
+		color: #000000;
+		
+		// Header text elements
+		.header-row {
+			.header-label {
+				color: #000000;
+			}
+			
+			.header-name {
+				color: #000000;
+			}
+		}
+		
+		// Message participants
+		.message-participants {
+			.from-contact {
+				color: #000000;
+			}
+			
+			.from-label,
+			.to-label,
+			.reply-to-label,
+			.cc-label,
+			.bcc-label {
+				color: #000000;
+			}
+			
+			.to-contact,
+			.reply-to-contact,
+			.cc-contact,
+			.bcc-contact,
+			.to-everyone {
+				color: #000000;
+			}
+			
+			.expanded-participants {
+				.participant-primary,
+				.participant-secondary {
+					color: #000000;
+				}
+			}
+		}
+		
+		// Message time and indicators
+		.message-time,
+		.message-indicator {
+			color: #666666;
+		}
+		
+		// Header toggle control
+		.header-toggle-control img {
+			background: #000000;
+		}
+		
+		// Message actions
+		.message-actions-wrap {
+			.button-dropdown.bordered {
+				.primary-item,
+				.secondary-picker {
+					background: #f0f0f0;
+					color: #000000;
+					
+					img.content-mask {
+						background-color: #000000;
+					}
+				}
+				
+				.primary-item:hover,
+				.secondary-picker:hover {
+					background: #e0e0e0;
+				}
+			}
+		}
+	}
+	
+	// Message body content - preserve original email styling
+	.message-item-white-wrap {
+		background-color: #ffffff;
+		color: #000000;
+		
+		// Message content area
+		.message-content-area {
+			background-color: #ffffff;
+			color: #000000;
+		}
+		
+		// Email body content - allow original styling
+		.message-body {
+			// Don't force background - let email styling handle it
+			color: #000000;
+			
+			// Default text color for email content - only if not already set
+			p:not([style*="color"]), 
+			div:not([style*="color"]), 
+			span:not([style*="color"]), 
+			h1:not([style*="color"]), 
+			h2:not([style*="color"]), 
+			h3:not([style*="color"]), 
+			h4:not([style*="color"]), 
+			h5:not([style*="color"]), 
+			h6:not([style*="color"]) {
+				color: #000000;
+			}
+			
+			// Links - only if not already set
+			a:not([style*="color"]) {
+				color: #0066cc;
+				
+				&:hover {
+					color: #003366;
+				}
+			}
+			
+			// Blockquotes - only style if not already styled
+			blockquote:not([style*="background-color"]) {
+				background-color: #f8f8f8;
+				border-left: 4px solid #e0e0e0;
+				color: #333333;
+			}
+			
+			// Code blocks - only style if not already styled
+			pre:not([style*="background-color"]), 
+			code:not([style*="background-color"]) {
+				background-color: #f5f5f5;
+				color: #333333;
+				border: 1px solid #e0e0e0;
+			}
+			
+			// Tables - don't force backgrounds
+			table:not([style*="background-color"]) {
+				// Let email styling handle the background
+				color: #000000;
+				
+				td:not([style*="background-color"]), 
+				th:not([style*="background-color"]) {
+					// Let email styling handle the background
+					color: #000000;
+					border-color: #e0e0e0;
+				}
+			}
+			
+			// Lists - only set color if not already set
+			ul:not([style*="color"]), 
+			ol:not([style*="color"]) {
+				color: #000000;
+			}
+			
+			// Horizontal rules - only style if not already styled
+			hr:not([style*="background-color"]) {
+				background-color: #e0e0e0;
+				border-color: #e0e0e0;
+			}
+			
+			// Embedded content - don't force backgrounds
+			iframe {
+				// Let email styling handle the background
+			}
+			
+			// Images - don't force backgrounds
+			img {
+				// Let email styling handle the background
+			}
+			
+			// Form elements - only style if not already styled
+			input:not([style*="background-color"]), 
+			textarea:not([style*="background-color"]), 
+			select:not([style*="background-color"]) {
+				background-color: #ffffff;
+				color: #000000;
+				border: 1px solid #e0e0e0;
+			}
+			
+			// Text formatting - only set color if not already set
+			strong:not([style*="color"]), 
+			b:not([style*="color"]), 
+			em:not([style*="color"]), 
+			i:not([style*="color"]), 
+			s:not([style*="color"]), 
+			strike:not([style*="color"]), 
+			small:not([style*="color"]), 
+			sub:not([style*="color"]), 
+			sup:not([style*="color"]) {
+				color: #000000;
+			}
+			
+			// Marked text - only style if not already styled
+			mark:not([style*="background-color"]) {
+				background-color: #ffff00;
+				color: #000000;
+			}
+		}
+	}
+	
+	// Footer reply area
+	.footer-reply-area-wrap {
+		background-color: #ffffff;
+		color: #000000;
+		
+		.footer-reply-area {
+			background: #f0f0f0;
+			color: #000000;
+			
+			img.content-mask {
+				background-color: #000000;
+			}
+			
+			&:hover {
+				background-color: #e0e0e0;
+			}
+		}
+	}
+}
+
+//------------------------------------------------------------
+// Additional email content styling - preserve original styling
+//------------------------------------------------------------
+
+// Ensure any other email content areas preserve original styling
+.message-content,
+.email-content,
+.mail-content {
+	// Don't force background - let email styling handle it
+	color: #000000;
+	
+	p:not([style*="color"]), 
+	div:not([style*="color"]), 
+	span:not([style*="color"]), 
+	h1:not([style*="color"]), 
+	h2:not([style*="color"]), 
+	h3:not([style*="color"]), 
+	h4:not([style*="color"]), 
+	h5:not([style*="color"]), 
+	h6:not([style*="color"]) {
+		color: #000000;
+	}
+	
+	a:not([style*="color"]) {
+		color: #0066cc;
+		
+		&:hover {
+			color: #003366;
+		}
+	}
+}
+
+//------------------------------------------------------------
+// Special handling for emails with custom styling
+//------------------------------------------------------------
+
+// For emails that have their own background colors, we need to ensure text is readable
+.ignore-in-parent-frame {
+	// If an element has a dark background, ensure text is light
+	*[style*="background-color: #000000"],
+	*[style*="background-color: #000"],
+	*[style*="background-color: black"],
+	*[style*="background-color: rgb(0,0,0)"],
+	*[style*="background-color: rgba(0,0,0"] {
+		color: #ffffff;
+		
+		a {
+			color: #2d98d6;
+			
+			&:hover {
+				color: #ffffff;
+			}
+		}
+	}
+	
+	// If an element has a very dark background, ensure text is light
+	*[style*="background-color: #1a1a1a"],
+	*[style*="background-color: #2d2d2d"],
+	*[style*="background-color: #333333"] {
+		color: #ffffff;
+		
+		a {
+			color: #2d98d6;
+			
+			&:hover {
+				color: #ffffff;
+			}
+		}
+	}
+}
+
+//------------------------------------------------------------
+// Global message iframe container styling
+//------------------------------------------------------------
+
+// Ensure message iframe containers don't enforce white backgrounds
+.message-iframe-container {
+	background-color: transparent !important;
+	
+	// The iframe itself should be transparent
+	iframe {
+		background-color: transparent !important;
+	}
+	
+	// Any wrapper elements should also be transparent
+	.message-iframe-wrapper,
+	.message-iframe-content {
+		background-color: transparent !important;
+	}
+}
+
+// Also target any other potential iframe container classes
+.message-body-iframe,
+.email-iframe-container,
+.mail-iframe-container {
+	background-color: transparent !important;
+	
+	iframe {
+		background-color: transparent !important;
+	}
+}

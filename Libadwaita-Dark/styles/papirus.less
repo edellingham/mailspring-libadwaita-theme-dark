@@ -132,6 +132,7 @@ body.platform-linux .toolbar-menu-control .btn-toolbar img.content-mask[alt="win
 	mask-size: 16px !important;
 	width: 16px !important;
 	height: 16px !important;
+	zoom: 1 !important;
 
 	&[alt="toolbar-archive.png"] {
 		mask-image: url("mailspring://@{asset_path}/styles/papirus/archive.svg") !important;
@@ -293,49 +294,60 @@ body.platform-linux .toolbar-menu-control .btn-toolbar img.content-mask[alt="win
 //------------------------------------------------------------
 // Messagelist toolbar
 //------------------------------------------------------------
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-archive.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/archive.svg") !important;
-}
+.sheet-toolbar .btn-toolbar img.content-mask {
+	mask-size: 16px !important;
+	width: 16px !important;
+	height: 16px !important;
+	zoom: 1 !important;
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-trash.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/trash.svg") !important;
-}
+	&[alt="toolbar-archive.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/archive.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-spam.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/spam.svg") !important;
-}
+	&[alt="toolbar-trash.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/trash.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-not-spam.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/not-spam.svg") !important;
-}
+	&[alt="toolbar-spam.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/spam.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-star.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/star.svg") !important;
-}
+	&[alt="toolbar-not-spam.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/not-spam.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-star-selected.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/not-star.svg") !important;
-}
+	&[alt="toolbar-star.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/star.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-markasunread.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/unread.svg") !important;
-}
+	&[alt="toolbar-star-selected.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/not-star.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-markasread.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/read.svg") !important;
-}
+	&[alt="toolbar-markasunread.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/unread.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-movetofolder.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/movetofolder.svg") !important;
-}
+	&[alt="toolbar-markasread.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/read.svg") !important;
+	}
 
-.sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-tag.png"] {
-	mask-image: url("mailspring://@{asset_path}/styles/papirus/label.svg") !important;
+	&[alt="toolbar-movetofolder.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/movetofolder.svg") !important;
+	}
+
+	&[alt="toolbar-tag.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/label.svg") !important;
+	}
 }
 
 .sheet-toolbar .btn-toolbar img.content-mask[alt="toolbar-person-sidebar.png"],
 .toolbar-MessageListSidebar .btn-toolbar.mode-toggle.mode-false img.content-mask[alt="toolbar-person-sidebar.png"] {
 	mask-image: url("mailspring://@{asset_path}/styles/papirus/person.svg") !important;
+	mask-size: 16px !important;
+	width: 16px !important;
+	height: 16px !important;
+	zoom: 1 !important;
 }
 
 .sheet-toolbar .message-toolbar-arrow.down,
@@ -563,6 +575,24 @@ body.platform-linux .toolbar-menu-control .btn-toolbar img.content-mask[alt="win
 		width: 16px;
 		height: 16px;
 	}
+}
+
+// Rich editor toolbar in composer - override for light mode
+.message-item-white-wrap.composer-outer-wrap .RichEditor-toolbar,
+.composer-full-window .RichEditor-toolbar {
+	.fa-bold:before,
+	.fa-italic:before,
+	.fa-underline:before,
+	.fa-strikethrough:before,
+	.fa-smile-o:before,
+	.fa-link:before,
+	.fa-quote-left:before,
+	.fa-sticky-note-o:before,
+	.fa-list-ol:before,
+	.fa-list-ul:before,
+	.fa-text-height:before {
+		background-color: rgba(0, 0, 6, 0.8) !important;
+	}
 
 	.fa-bold:before {
 		mask-image: url("mailspring://@{asset_path}/styles/papirus/format-bold.svg");
@@ -662,6 +692,37 @@ body.platform-linux .toolbar-menu-control .btn-toolbar img.content-mask[alt="win
 	}	
 }
 
+// Composer toolbar buttons - override for light mode
+.message-item-white-wrap.composer-outer-wrap .composer-inner-wrap .composer-action-bar-wrap .btn.btn-toolbar img.content-mask,
+.composer-full-window .composer-inner-wrap .composer-action-bar-wrap .btn.btn-toolbar img.content-mask {
+	background-color: rgba(0, 0, 6, 0.8) !important; // Match light theme text color
+	mask-size: 16px !important;
+	width: 16px !important;
+	height: 16px !important;
+	zoom: 1 !important;
+
+	&[alt="icon-composer-sendlater.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/snoozed.svg") !important;
+	}
+
+	&[src="mailspring://composer-templates/assets/icon-composer-templates@2x.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/template.svg") !important;
+	}
+
+	&[alt="icon-composer-attachment.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/attachment.svg") !important;
+	}
+
+	&[alt="icon-composer-trash.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/trash.svg") !important;
+	}
+
+	&[alt="icon-composer-dropdown.png"] {
+		mask-image: url("mailspring://@{asset_path}/styles/papirus/dropdown.svg") !important;
+	}
+}
+
+// Fallback for general composer toolbar (keep existing for dark theme)
 .composer-inner-wrap .composer-action-bar-wrap .btn.btn-toolbar img.content-mask {
 	mask-size: 16px !important;
 	width: 16px !important;

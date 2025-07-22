@@ -1,0 +1,11 @@
+# Development and temporary files
+memories.json
+CLAUDE.md
+.snapshots/
+
+# Reference theme (not part of this package)
+Libadwaita/
+
+# Unrelated packages
+../AI-Assistant*
+../mailspring-avatars/
