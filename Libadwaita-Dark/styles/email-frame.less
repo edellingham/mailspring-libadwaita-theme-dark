@@ -296,18 +296,27 @@
 			color: #666666;
 		}
 		
-		// Quoted text controls
+		// Quoted text controls - override dark theme styling for email content
 		.quoted-text-control {
-			background-color: #f8f8f8;
-			color: #666666;
-			border-top: 1px solid #e0e0e0;
+			background-color: #f8f8f8 !important;
+			color: #666666 !important;
+			border-top: 1px solid #e0e0e0 !important;
+			border: 0 !important;
+			border-top: 1px solid #e0e0e0 !important;
+			border-radius: 8px !important;
+			min-width: 34px !important;
+			height: 34px !important;
+			line-height: 34px !important;
+			font-size: 15px !important;
+			text-align: center !important;
+			margin-top: 32px !important;
 			
 			&::before {
-				color: #666666;
+				color: #666666 !important;
 			}
 			
 			.remove-quoted-text {
-				color: #000000;
+				color: #000000 !important;
 			}
 		}
 		
